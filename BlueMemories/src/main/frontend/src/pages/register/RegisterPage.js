@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./RegisterPage.css";
 
 const RegisterForm = () => {
     const [email, setEmail] = useState('');
@@ -26,14 +27,22 @@ const RegisterForm = () => {
     };
 
     return (
-        <div>
-            <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-            <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} />
-            <input type="number" placeholder="Age" onChange={(e) => setAge(e.target.value)} />
-            <input type="text" placeholder="Gender" onChange={(e) => setGender(e.target.value)} />
-            <button onClick={handleRegister}>Register</button>
-        </div>
+        <>
+            <div className="container">
+                <div className="login_left">
+
+                </div>
+                <div className="login_middle">
+                    <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+                    <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                    <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} />
+                    <input type="number" placeholder="Age" onChange={(e) => setAge(e.target.value)} />
+                    <input type="text" placeholder="Gender" onChange={(e) => setGender(e.target.value)} />
+                    <button onClick={handleRegister}>Register</button>
+                </div>
+            </div>
+        </>
+
     );
 };
 
