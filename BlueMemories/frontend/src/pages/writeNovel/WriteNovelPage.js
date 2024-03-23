@@ -104,11 +104,12 @@ const ImageCreateBtn = ({ isHidden, marginLeft }) => (
 );
 const TextareaStyled = styled.textarea`
     width: 22.5vw;
-    height: 32vw;
+    height: 31vw;
     /*스타일*/
     border: none;
     outline:none;
     resize: none;
+    overflow: hidden; /* 스크롤바 숨김 */
     /*텍스트 설정*/
     font-size: 0.8vw;
     font-family: BokkLight, sans-serif; //대체폰트
@@ -117,16 +118,18 @@ const TextareaStyled = styled.textarea`
     z-index: 2;
     /*위치*/
     top:12%;
-    left: ${(props) => props.marginLeft || '4.5%'};
+    left: ${(props) => props.marginLeft || '5.3%'};
     &:focus {
         border: none; // 클릭했을 때 테두리 없앰
         outline:none;
         resize: none;
+        overflow: hidden; /* 스크롤바 숨김 */
         /*텍스트 설정*/
         font-size: 0.8vw;
         font-family: BokkLight, sans-serif; //대체폰트
     }
 `;
+// 사용자 입력에 따라 content 상태 업데이트
 const WriteTextarea = ({ content, setContent, setIsFocused,marginLeft }) => (
     <TextareaStyled
         value={content}
@@ -136,7 +139,32 @@ const WriteTextarea = ({ content, setContent, setIsFocused,marginLeft }) => (
         marginLeft={marginLeft}
     />
 );
-
+const LeftPageNumber=styled.span`
+    left:6%;
+    bottom:5%;
+    //padding:2%;
+    /*텍스트 설정*/
+    font-size: 0.8vw;
+    font-family: BokkLight, sans-serif; //대체폰트
+    /*레이어*/
+    position:absolute;
+    z-index: 4;
+    align-content: center;
+    
+`;
+const RightPageNumber=styled.span`
+    right:6%;
+    bottom:5%;
+    //padding:2%;
+    /*텍스트 설정*/
+    font-size: 0.8vw;
+    font-family: BokkLight, sans-serif; //대체폰트
+    /*레이어*/
+    position:absolute;
+    z-index: 4;
+    align-content: center;
+    
+`;
 const WriteNovelForm = () => {
     // 초기값 빈 문자열
     const [a_content, a_setContent] = useState('');
@@ -144,10 +172,6 @@ const WriteNovelForm = () => {
     // Textarea의 포커스 상태 초기화
     const [a_isTextareaFocused, a_setIsTextareaFocused] = useState(false);
     const [b_isTextareaFocused, b_setIsTextareaFocused] = useState(false);
-    // 사용자 입력에 따라 content 상태 업데이트
-    // const handleChange = (e) => {
-    //     setContent(e.target.value);
-    // };
     //textarea에 포커스가 있을때 && 내용이 적혀있을때 => 그림생성 버튼 hidden
     const a_isButtonHidden = a_isTextareaFocused || a_content.length > 0;
     const b_isButtonHidden = b_isTextareaFocused || b_content.length > 0;
@@ -169,14 +193,15 @@ const WriteNovelForm = () => {
                             setContent={a_setContent}
                             setIsFocused={a_setIsTextareaFocused}
                         />
-                        <WriteTextarea marginLeft="53.5%"
+                        <WriteTextarea marginLeft="53.8%"
                             content={b_content}
                             setContent={b_setContent}
                             setIsFocused={b_setIsTextareaFocused}
                         />
                         <ImageCreateBtn isHidden={a_isButtonHidden}></ImageCreateBtn>
                         <ImageCreateBtn isHidden={b_isButtonHidden} marginLeft="49%"></ImageCreateBtn>
-
+                        <LeftPageNumber>2</LeftPageNumber>
+                        <RightPageNumber>3</RightPageNumber>
                     </WriteContainer>
                     <AfterePageBtn></AfterePageBtn>
                 </BodyContainer>
