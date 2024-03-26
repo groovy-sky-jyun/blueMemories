@@ -6,9 +6,9 @@ import {Body,LeftContainer,RightContainer,MessageContainer,WelcomeMassage,
 import {useNavigate} from "react-router-dom";
 
 const RegisterForm = () => {
-    const [email, setEmail] = useState('');
+    const [memberId, setMemberId] = useState('');
     const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
+    const [nickname, setNickname] = useState('');
 
     const navigate = useNavigate();
     const goLogin = () => {
@@ -16,10 +16,10 @@ const RegisterForm = () => {
     }
 
     const handleRegister = () => {
-        axios.post('http://localhost:8080/register', {
-            email: email,
+        axios.post('http://localhost:8080/api/register', {
+            memberId: memberId,
             password: password,
-            name : name
+            nickname: nickname,
         })
             .then(response => {
                 console.log(response.data);
@@ -43,18 +43,18 @@ const RegisterForm = () => {
                         <WelcomeMassage>Register your account</WelcomeMassage>
                     </MessageContainer>
                     <LoginContainer topmargin={'10%'}>
-                        <InputText>Name</InputText>
-                        <InputBox type="text" placeholder="Enter your name" onChange={(e) => setName(e.target.value)}></InputBox>
-                        <InputText>Email</InputText>
-                        <InputBox type="email" placeholder="Enter your email"  onChange={(e) => setEmail(e.target.value)}></InputBox>
+                        <InputText>Nickname</InputText>
+                        <InputBox type="text" placeholder="Enter your name" onChange={(e) => setNickname(e.target.value)}></InputBox>
+                        <InputText>Id</InputText>
+                        <InputBox type="text" placeholder="Enter your id"  onChange={(e) => setMemberId(e.target.value)}></InputBox>
                         <InputText>Password</InputText>
-                        <InputBox type="text" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)}></InputBox>
+                        <InputBox type="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)}></InputBox>
                         <InputText>Password check</InputText>
-                        <InputBox type="text" placeholder="Confirm password"></InputBox>
+                        <InputBox type="password" placeholder="Confirm password"></InputBox>
                     </LoginContainer>
                     <ButtonBox flex={'column'} bbtMargin={"2%"}>
                         <JoinButton onClick={goLogin}>Login</JoinButton>
-                        <LoginButton lbmargin={'23%'}>Sign Up</LoginButton>
+                        <LoginButton lbmargin={'23%'} onClick={handleRegister}>Sign Up</LoginButton>
                     </ButtonBox>
 
                 </RightContainer>
