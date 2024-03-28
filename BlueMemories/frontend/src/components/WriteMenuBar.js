@@ -6,6 +6,7 @@ const ImageContainer=styled.div`
     height:5vw;
     /*item 설정*/
     position:relative;
+    z-index: ${(props)=>props.index|| '6'};
 `;
 
 const BottomImage = styled.div`
@@ -61,6 +62,7 @@ const MenuItem = styled.button`
     border: none;
     font-size: 2.3vw;
     font-family: gangwonedusaeeum, sans-serif; //대체폰트
+    user-select: none;
     /*크기*/
     height: auto;
     width: auto;
